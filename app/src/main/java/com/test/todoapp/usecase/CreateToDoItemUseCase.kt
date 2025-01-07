@@ -3,9 +3,9 @@ package com.test.todoapp.usecase
 import com.test.todoapp.model.ToDoItem
 import com.test.todoapp.repository.ToDoRepository
 
-class CreateToDoItemUseCase {
-
-    private val repository: ToDoRepository = ToDoRepository()
+class CreateToDoItemUseCase(
+    private val repository: ToDoRepository,
+) {
 
     operator fun invoke(name: String): ToDoItem? {
         if (name.isEmpty()) return null

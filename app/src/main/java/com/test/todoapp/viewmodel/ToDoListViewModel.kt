@@ -5,17 +5,20 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.test.todoapp.model.ToDoItem
+import com.test.todoapp.repository.ToDoRepository
 import com.test.todoapp.usecase.CreateToDoItemUseCase
 import com.test.todoapp.usecase.FetchAllToDoItemsUseCase
 import com.test.todoapp.usecase.RemoveToDoItemUseCase
 
 class ToDoListViewModel: ViewModel() {
 
-    private val createToDoItemUseCase = CreateToDoItemUseCase()
+    private val repository = ToDoRepository()
 
-    private val fetchAllToDoItemsUseCase = FetchAllToDoItemsUseCase()
+    private val createToDoItemUseCase = CreateToDoItemUseCase(repository)
 
-    private val removeToDoItemUseCase = RemoveToDoItemUseCase()
+    private val fetchAllToDoItemsUseCase = FetchAllToDoItemsUseCase(repository)
+
+    private val removeToDoItemUseCase = RemoveToDoItemUseCase(repository)
 
     private val _toDoItemsLiveData = MutableLiveData<List<ToDoItem>>(arrayListOf())
     val toDoItemsLiveData: LiveData<List<ToDoItem>> = _toDoItemsLiveData
@@ -28,9 +31,9 @@ class ToDoListViewModel: ViewModel() {
     }
 
     fun onSubmitClicked(name: String) {
-        val item = createToDoItemUseCase.invoke(name)
+        val item = createToDoItemUseCase(name)
         if (item != null) {
-            val items = _toDoItemsLiveData.value as ArrayList<ToDoItem>
+            val items = getToDoListItems()
             items.add(0, item)
             setToDoListItems(items)
         } else {
@@ -40,18 +43,13 @@ class ToDoListViewModel: ViewModel() {
 
     fun removeItemAt(position: Int) {
         val items = getToDoListItems()
-        if (items.size > position) {
-            val item = items[position]
-            val status = removeToDoItemUseCase(item)
-            if (status) {
-                setToDoListItems(ArrayList(items).apply {
-                    removeItemAt(position)
-                })
-            } else {
-                setErrorMessage("Failed to remove item")
-            }
+        val item = items[position]
+        val status = removeToDoItemUseCase(item)
+        if (status) {
+            items.remove(item)
+            setToDoListItems(ArrayList(items))
         } else {
-            setErrorMessage("Failed to remove item")
+            setErrorMessage("Failed to remove item: ${item.name}")
         }
     }
 
@@ -59,8 +57,8 @@ class ToDoListViewModel: ViewModel() {
         _toDoItemsLiveData.value = items
     }
 
-    private fun getToDoListItems(): List<ToDoItem> {
-        return _toDoItemsLiveData.value ?: listOf()
+    private fun getToDoListItems(): ArrayList<ToDoItem> {
+        return _toDoItemsLiveData.value as ArrayList<ToDoItem>? ?: arrayListOf()
     }
 
     private fun setErrorMessage(message: String) {

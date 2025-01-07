@@ -17,10 +17,10 @@ class ToDoRepository {
             items.remove(item)
             return true
         }
-        return true
+        return false
     }
 
-    fun getAllItems(): List<ToDoItem> = items
+    fun getAllItems(): List<ToDoItem> = ArrayList(items)
 
     fun getCount() = items.size
 

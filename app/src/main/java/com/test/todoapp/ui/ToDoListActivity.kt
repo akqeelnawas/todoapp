@@ -41,7 +41,6 @@ class ToDoListActivity: AppCompatActivity() {
         adapter = ToDoListAdapter(layoutInflater)
         layoutManager =
             LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
-
         ItemTouchHelper(RecyclerViewSwipeCallback(context) {
             viewModel.removeItemAt(it)
         }).attachToRecyclerView(this)
