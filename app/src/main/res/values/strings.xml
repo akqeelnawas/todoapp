@@ -5,6 +5,9 @@
     <string name="submit">Submit</string>
 
     <!-- Labels -->
+    <string name="label_my_todo_list">My Tasks</string>
     <string name="enter_todo_item_hint">Enter your task</string>
+    <string name="label_placeholder_getting_started">Let\'s get started</string>
+    <string name="label_placeholder_enter_first_task">Enter your first task</string>
 
 </resources>
