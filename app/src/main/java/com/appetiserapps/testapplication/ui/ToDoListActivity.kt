@@ -44,8 +44,8 @@ class ToDoListActivity: AppCompatActivity() {
 
     private fun setupCtas() {
         binding.btnSubmit.setOnClickListener {
-            clearInputToDoName()
             viewModel.onSubmitClicked(getInputToDoName())
+            clearInputToDoName()
         }
     }
 

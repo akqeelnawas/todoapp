@@ -10,7 +10,7 @@ class CreateToDoItemUseCase {
     operator fun invoke(name: String): ToDoItem? {
         if (name.isEmpty()) return null
         val count = repository.getCount()
-        val item = ToDoItem(id = count+1, name = name)
+        val item = ToDoItem(id = count + 1, name = name)
         repository.createItem(item)
         return item
     }
