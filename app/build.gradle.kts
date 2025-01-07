@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.appetiserapps.testapplication"
+    namespace = "com.test.todoapp"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.appetiserapps.testapplication"
+        applicationId = "com.test.todoapp"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

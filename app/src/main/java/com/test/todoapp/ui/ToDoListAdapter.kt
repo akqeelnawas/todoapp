@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.appetiserapps.testapplication.databinding.RowTodoListBinding
+import com.test.todoapp.databinding.RowTodoListBinding
 import com.test.todoapp.model.ToDoItem
 
 class ToDoListAdapter(

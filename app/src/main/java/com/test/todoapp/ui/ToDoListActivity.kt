@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
-import com.appetiserapps.testapplication.databinding.ActivityTodoListBinding
+import com.test.todoapp.databinding.ActivityTodoListBinding
 import com.test.todoapp.extension.showShortToast
 import com.test.todoapp.viewmodel.ToDoListViewModel
 import com.test.todoapp.viewmodel.ToDoListViewModelFactory

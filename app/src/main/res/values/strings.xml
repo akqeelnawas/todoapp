@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TestApplication</string>
+    <string name="app_name">To Do App</string>
 
     <!-- Actions -->
     <string name="submit">Submit</string>
