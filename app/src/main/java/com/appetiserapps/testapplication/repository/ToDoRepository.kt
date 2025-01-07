@@ -12,11 +12,15 @@ class ToDoRepository {
         return items.contains(item)
     }
 
-    fun getAllItems(): List<ToDoItem> = items.apply {
-        add(ToDoItem(1, "Item 1"))
-        add(ToDoItem(2, "Item 2"))
-        add(ToDoItem(3, "Item 3"))
+    fun removeItem(item: ToDoItem): Boolean {
+        if (items.contains(item)) {
+            items.remove(item)
+            return true
+        }
+        return true
     }
+
+    fun getAllItems(): List<ToDoItem> = items
 
     fun getCount() = items.size
 

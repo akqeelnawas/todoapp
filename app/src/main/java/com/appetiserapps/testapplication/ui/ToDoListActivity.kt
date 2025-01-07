@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.appetiserapps.testapplication.databinding.ActivityTodoListBinding
 import com.appetiserapps.testapplication.extension.showShortToast
 import com.appetiserapps.testapplication.viewmodel.ToDoListViewModel
@@ -36,10 +37,14 @@ class ToDoListActivity: AppCompatActivity() {
         }
     }
 
-    private fun setupRecyclerView() {
-        binding.rvToDoList.adapter = ToDoListAdapter(layoutInflater)
-        binding.rvToDoList.layoutManager =
+    private fun setupRecyclerView() = binding.rvToDoList.apply {
+        adapter = ToDoListAdapter(layoutInflater)
+        layoutManager =
             LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
+
+        ItemTouchHelper(RecyclerViewSwipeCallback(context) {
+            viewModel.removeItemAt(it)
+        }).attachToRecyclerView(this)
     }
 
     private fun setupCtas() {

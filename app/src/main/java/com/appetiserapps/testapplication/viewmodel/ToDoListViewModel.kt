@@ -7,12 +7,15 @@ import androidx.lifecycle.ViewModelProvider
 import com.appetiserapps.testapplication.model.ToDoItem
 import com.appetiserapps.testapplication.usecase.CreateToDoItemUseCase
 import com.appetiserapps.testapplication.usecase.FetchAllToDoItemsUseCase
+import com.appetiserapps.testapplication.usecase.RemoveToDoItemUseCase
 
 class ToDoListViewModel: ViewModel() {
 
     private val createToDoItemUseCase = CreateToDoItemUseCase()
 
     private val fetchAllToDoItemsUseCase = FetchAllToDoItemsUseCase()
+
+    private val removeToDoItemUseCase = RemoveToDoItemUseCase()
 
     private val _toDoItemsLiveData = MutableLiveData<List<ToDoItem>>(arrayListOf())
     val toDoItemsLiveData: LiveData<List<ToDoItem>> = _toDoItemsLiveData
@@ -35,8 +38,29 @@ class ToDoListViewModel: ViewModel() {
         }
     }
 
+    fun removeItemAt(position: Int) {
+        val items = getToDoListItems()
+        if (items.size > position) {
+            val item = items[position]
+            val status = removeToDoItemUseCase(item)
+            if (status) {
+                setToDoListItems(ArrayList(items).apply {
+                    removeItemAt(position)
+                })
+            } else {
+                setErrorMessage("Failed to remove item")
+            }
+        } else {
+            setErrorMessage("Failed to remove item")
+        }
+    }
+
     private fun setToDoListItems(items: List<ToDoItem>) {
         _toDoItemsLiveData.value = items
+    }
+
+    private fun getToDoListItems(): List<ToDoItem> {
+        return _toDoItemsLiveData.value ?: listOf()
     }
 
     private fun setErrorMessage(message: String) {
