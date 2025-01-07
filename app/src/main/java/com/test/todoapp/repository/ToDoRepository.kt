@@ -3,8 +3,9 @@ package com.test.todoapp.repository
 import com.test.todoapp.database.AppDatabase
 import com.test.todoapp.model.ToDoEntity
 import com.test.todoapp.model.ToDoItem
+import javax.inject.Inject
 
-class ToDoRepository(
+class ToDoRepository @Inject constructor(
     private val appDatabase: AppDatabase,
 ) {
 

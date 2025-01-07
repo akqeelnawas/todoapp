@@ -10,18 +10,17 @@ import com.test.todoapp.repository.ToDoRepository
 import com.test.todoapp.usecase.CreateToDoItemUseCase
 import com.test.todoapp.usecase.FetchAllToDoItemsUseCase
 import com.test.todoapp.usecase.RemoveToDoItemUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ToDoListViewModel(
-    private val repository: ToDoRepository,
+@HiltViewModel
+class ToDoListViewModel @Inject constructor(
+    private val createToDoItemUseCase: CreateToDoItemUseCase,
+    private val removeToDoItemUseCase: RemoveToDoItemUseCase,
+    private val fetchAllToDoItemsUseCase: FetchAllToDoItemsUseCase,
 ): ViewModel() {
-
-    private val createToDoItemUseCase = CreateToDoItemUseCase(repository)
-
-    private val fetchAllToDoItemsUseCase = FetchAllToDoItemsUseCase(repository)
-
-    private val removeToDoItemUseCase = RemoveToDoItemUseCase(repository)
 
     private val _toDoItemsLiveData = MutableLiveData<List<ToDoItem>>(arrayListOf())
     val toDoItemsLiveData: LiveData<List<ToDoItem>> = _toDoItemsLiveData
@@ -68,15 +67,4 @@ class ToDoListViewModel(
         _errorMessageLiveData.postValue(message)
     }
 
-}
-
-class ToDoListViewModelFactory(
-    private val repository: ToDoRepository,
-): ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(ToDoListViewModel::class.java)) {
-            return ToDoListViewModel(repository) as T
-        }
-        throw IllegalArgumentException("Unsupported `modelClass`: ${modelClass.name}")
-    }
 }

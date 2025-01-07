@@ -2,8 +2,9 @@ package com.test.todoapp.usecase
 
 import com.test.todoapp.model.ToDoItem
 import com.test.todoapp.repository.ToDoRepository
+import javax.inject.Inject
 
-class CreateToDoItemUseCase(
+class CreateToDoItemUseCase @Inject constructor(
     private val repository: ToDoRepository,
 ) {
 
