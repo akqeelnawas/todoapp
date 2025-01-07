@@ -8,8 +8,8 @@ import com.test.todoapp.databinding.RowTodoListBinding
 import com.test.todoapp.model.ToDoItem
 
 class ToDoListAdapter(
-    private val layoutInflater: LayoutInflater,
-): RecyclerView.Adapter<ToDoListAdapterViewHolder>() {
+    private val layoutInflater: LayoutInflater
+) : RecyclerView.Adapter<ToDoListAdapterViewHolder>() {
 
     private val toDoItems = arrayListOf<ToDoItem>()
 
@@ -33,15 +33,13 @@ class ToDoListAdapter(
     }
 
     override fun getItemCount() = toDoItems.size
-
 }
 
 class ToDoListAdapterViewHolder(
     private val binding: RowTodoListBinding
-): RecyclerView.ViewHolder(binding.root) {
+) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: ToDoItem) {
         binding.todoItemName.text = item.name
     }
-
 }

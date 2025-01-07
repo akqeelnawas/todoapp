@@ -4,11 +4,10 @@ import com.test.todoapp.model.ToDoItem
 import com.test.todoapp.repository.ToDoRepository
 
 class RemoveToDoItemUseCase(
-    private val repository: ToDoRepository,
+    private val repository: ToDoRepository
 ) {
 
-     suspend operator fun invoke(item: ToDoItem): Boolean {
+    suspend operator fun invoke(item: ToDoItem): Boolean {
         return repository.removeItem(item)
     }
-
 }

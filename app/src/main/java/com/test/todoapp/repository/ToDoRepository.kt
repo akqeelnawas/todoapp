@@ -6,7 +6,7 @@ import com.test.todoapp.model.ToDoItem
 import javax.inject.Inject
 
 class ToDoRepository @Inject constructor(
-    private val appDatabase: AppDatabase,
+    private val appDatabase: AppDatabase
 ) {
 
     suspend fun createItem(item: ToDoItem): Int {
@@ -31,5 +31,4 @@ class ToDoRepository @Inject constructor(
         id = id,
         name = name
     )
-
 }

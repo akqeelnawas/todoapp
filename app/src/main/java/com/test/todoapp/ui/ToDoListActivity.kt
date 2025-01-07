@@ -1,11 +1,11 @@
 package com.test.todoapp.ui
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.test.todoapp.databinding.ActivityTodoListBinding
 import com.test.todoapp.extension.showShortToast
 import com.test.todoapp.model.ToDoItem
@@ -13,7 +13,7 @@ import com.test.todoapp.viewmodel.ToDoListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ToDoListActivity: AppCompatActivity() {
+class ToDoListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTodoListBinding
 
@@ -42,9 +42,11 @@ class ToDoListActivity: AppCompatActivity() {
         adapter = ToDoListAdapter(layoutInflater)
         layoutManager =
             LinearLayoutManager(applicationContext, LinearLayoutManager.VERTICAL, false)
-        ItemTouchHelper(RecyclerViewSwipeCallback(context) {
-            viewModel.removeItemAt(it)
-        }).attachToRecyclerView(this)
+        ItemTouchHelper(
+            RecyclerViewSwipeCallback(context) {
+                viewModel.removeItemAt(it)
+            }
+        ).attachToRecyclerView(this)
     }
 
     private fun setupCtas() {
@@ -80,5 +82,4 @@ class ToDoListActivity: AppCompatActivity() {
 
     private fun getRecyclerViewAdapter() =
         binding.rvToDoList.adapter as ToDoListAdapter
-
 }

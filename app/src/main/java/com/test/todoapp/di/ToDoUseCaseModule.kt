@@ -33,5 +33,4 @@ class ToDoUseCaseModule {
     ): RemoveToDoItemUseCase {
         return RemoveToDoItemUseCase(repository)
     }
-
 }

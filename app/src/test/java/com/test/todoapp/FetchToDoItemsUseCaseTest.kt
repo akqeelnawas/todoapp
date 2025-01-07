@@ -2,7 +2,6 @@ package com.test.todoapp
 
 import com.test.todoapp.model.ToDoItem
 import com.test.todoapp.repository.ToDoRepository
-import com.test.todoapp.usecase.CreateToDoItemUseCase
 import com.test.todoapp.usecase.FetchAllToDoItemsUseCase
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -19,7 +18,7 @@ class FetchToDoItemsUseCaseTest {
             ToDoItem(id = 1, name = "Test 1"),
             ToDoItem(id = 2, name = "Test 2"),
             ToDoItem(id = 3, name = "Test 3"),
-            ToDoItem(id = 4, name = "Test 4"),
+            ToDoItem(id = 4, name = "Test 4")
         )
 
         coEvery { repository.getAllItems() } returns testItems
@@ -29,5 +28,4 @@ class FetchToDoItemsUseCaseTest {
 
         Assert.assertEquals(testItems, result)
     }
-
 }

@@ -2,7 +2,6 @@ package com.test.todoapp
 
 import com.test.todoapp.model.ToDoItem
 import com.test.todoapp.repository.ToDoRepository
-import com.test.todoapp.usecase.CreateToDoItemUseCase
 import com.test.todoapp.usecase.RemoveToDoItemUseCase
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -26,5 +25,4 @@ class RemoveToDoItemUseCaseTest {
 
         Assert.assertEquals(true, result)
     }
-
 }
