@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">TestApplication</string>
+
+    <!-- Actions -->
+    <string name="submit">Submit</string>
+
+    <!-- Labels -->
+    <string name="enter_todo_item_hint">Enter your task</string>
+
+</resources>
