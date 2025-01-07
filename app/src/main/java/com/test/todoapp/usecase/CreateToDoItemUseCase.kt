@@ -5,7 +5,7 @@ import com.test.todoapp.repository.ToDoRepository
 import javax.inject.Inject
 
 class CreateToDoItemUseCase @Inject constructor(
-    private val repository: ToDoRepository,
+    private val repository: ToDoRepository
 ) {
 
     suspend operator fun invoke(name: String): ToDoItem? {
@@ -17,5 +17,4 @@ class CreateToDoItemUseCase @Inject constructor(
         }
         return null
     }
-
 }

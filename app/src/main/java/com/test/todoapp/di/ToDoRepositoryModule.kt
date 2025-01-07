@@ -13,9 +13,8 @@ class ToDoRepositoryModule {
 
     @Provides
     fun provideToDoRepository(
-        appDatabase: AppDatabase,
+        appDatabase: AppDatabase
     ): ToDoRepository {
         return ToDoRepository(appDatabase)
     }
-
 }

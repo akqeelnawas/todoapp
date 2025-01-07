@@ -23,5 +23,4 @@ class DatabaseModule {
             "database-name"
         ).build()
     }
-
 }

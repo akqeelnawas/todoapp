@@ -1,6 +1,5 @@
 package com.test.todoapp
 
-import com.test.todoapp.database.AppDatabase
 import com.test.todoapp.model.ToDoItem
 import com.test.todoapp.repository.ToDoRepository
 import com.test.todoapp.usecase.CreateToDoItemUseCase
@@ -28,5 +27,4 @@ class CreateToDoItemUseCaseTest {
         Assert.assertEquals(testId, result!!.id)
         Assert.assertEquals(testName, result.name)
     }
-
 }

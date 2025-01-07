@@ -17,5 +17,4 @@ interface ToDoDao {
 
     @Delete
     suspend fun deleteToDoItem(entity: ToDoEntity): Int
-
 }

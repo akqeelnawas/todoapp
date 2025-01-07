@@ -3,10 +3,8 @@ package com.test.todoapp.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.test.todoapp.model.ToDoItem
-import com.test.todoapp.repository.ToDoRepository
 import com.test.todoapp.usecase.CreateToDoItemUseCase
 import com.test.todoapp.usecase.FetchAllToDoItemsUseCase
 import com.test.todoapp.usecase.RemoveToDoItemUseCase
@@ -19,8 +17,8 @@ import javax.inject.Inject
 class ToDoListViewModel @Inject constructor(
     private val createToDoItemUseCase: CreateToDoItemUseCase,
     private val removeToDoItemUseCase: RemoveToDoItemUseCase,
-    private val fetchAllToDoItemsUseCase: FetchAllToDoItemsUseCase,
-): ViewModel() {
+    private val fetchAllToDoItemsUseCase: FetchAllToDoItemsUseCase
+) : ViewModel() {
 
     private val _toDoItemsLiveData = MutableLiveData<List<ToDoItem>>(arrayListOf())
     val toDoItemsLiveData: LiveData<List<ToDoItem>> = _toDoItemsLiveData
@@ -66,5 +64,4 @@ class ToDoListViewModel @Inject constructor(
     private fun setErrorMessage(message: String) {
         _errorMessageLiveData.postValue(message)
     }
-
 }

@@ -5,8 +5,8 @@ import com.test.todoapp.model.ToDoItem
 
 class ToDoListDiffUtilCallback(
     private val oldList: List<ToDoItem>,
-    private val newList: List<ToDoItem>,
-): DiffUtil.Callback() {
+    private val newList: List<ToDoItem>
+) : DiffUtil.Callback() {
 
     override fun getOldListSize() = oldList.size
 
@@ -23,5 +23,4 @@ class ToDoListDiffUtilCallback(
         val newListItem = newList[newItemPosition]
         return oldListItem == newListItem
     }
-
 }

@@ -2,20 +2,17 @@ package com.test.todoapp.ui
 
 import android.R
 import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.RectF
-import android.graphics.drawable.BitmapDrawable
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-
 class RecyclerViewSwipeCallback(
     private val context: Context,
-    private val onSwiped: (position: Int) -> Unit,
+    private val onSwiped: (position: Int) -> Unit
 ) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
 
     private val paint by lazy {
@@ -70,5 +67,4 @@ class RecyclerViewSwipeCallback(
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
         onSwiped(viewHolder.adapterPosition)
     }
-
 }
