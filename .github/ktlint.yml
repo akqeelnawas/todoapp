@@ -1,0 +1,54 @@
+name: Ktlint Check and Format
+
+on:
+  pull_request:
+    branches:
+      - dev
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  ktlint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Install dependencies
+        run: ./gradlew dependencies
+
+      - name: Run Ktlint Format
+        run: ./gradlew ktlintFormat
+
+      # Check if any files were modified by ktlint
+      - name: Check for changes
+        id: changes_check
+        run: |
+          if git diff --quiet; then
+            echo "::set-output name=has_changes::false"
+          else
+            echo "::set-output name=has_changes::true"
+          fi
+
+      # Commit and push changes if ktlint format made changes
+      - name: Commit changes
+        if: steps.changes_check.outputs.has_changes == 'true'
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add .
+          git commit -m "Apply ktlint format fixes"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
