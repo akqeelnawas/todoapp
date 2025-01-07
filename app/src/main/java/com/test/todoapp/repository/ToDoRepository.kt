@@ -1,27 +1,34 @@
 package com.test.todoapp.repository
 
+import com.test.todoapp.database.AppDatabase
+import com.test.todoapp.model.ToDoEntity
 import com.test.todoapp.model.ToDoItem
 
-class ToDoRepository {
+class ToDoRepository(
+    private val appDatabase: AppDatabase,
+) {
 
-    private val items = arrayListOf<ToDoItem>()
-
-    fun createItem(item: ToDoItem): Boolean {
-        if (items.contains(item)) return false
-        items.add(item)
-        return items.contains(item)
+    suspend fun createItem(item: ToDoItem): Int {
+        val result = appDatabase.toDoDao().saveToDoItem(item.toToDoEntity())
+        return result.toInt()
     }
 
-    fun removeItem(item: ToDoItem): Boolean {
-        if (items.contains(item)) {
-            items.remove(item)
-            return true
-        }
-        return false
+    suspend fun removeItem(item: ToDoItem): Boolean {
+        val result = appDatabase.toDoDao().deleteToDoItem(item.toToDoEntity())
+        return result == 1
     }
 
-    fun getAllItems(): List<ToDoItem> = ArrayList(items)
+    suspend fun getAllItems(): List<ToDoItem> = appDatabase.toDoDao().getAll()
+        .map { it.toToDoItem() }
 
-    fun getCount() = items.size
+    private fun ToDoItem.toToDoEntity() = ToDoEntity(
+        id = id,
+        name = name
+    )
+
+    private fun ToDoEntity.toToDoItem() = ToDoItem(
+        id = id,
+        name = name
+    )
 
 }

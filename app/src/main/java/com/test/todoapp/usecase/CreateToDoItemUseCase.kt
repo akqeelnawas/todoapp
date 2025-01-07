@@ -7,12 +7,14 @@ class CreateToDoItemUseCase(
     private val repository: ToDoRepository,
 ) {
 
-    operator fun invoke(name: String): ToDoItem? {
+    suspend operator fun invoke(name: String): ToDoItem? {
         if (name.isEmpty()) return null
-        val count = repository.getCount()
-        val item = ToDoItem(id = count + 1, name = name)
-        repository.createItem(item)
-        return item
+        val item = ToDoItem(id = 0, name = name)
+        val result = repository.createItem(item)
+        if (result > 0) {
+            return ToDoItem(result, item.name)
+        }
+        return null
     }
 
 }

@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
+import com.test.todoapp.ToDoApp
 import com.test.todoapp.databinding.ActivityTodoListBinding
 import com.test.todoapp.extension.showShortToast
+import com.test.todoapp.repository.ToDoRepository
 import com.test.todoapp.viewmodel.ToDoListViewModel
 import com.test.todoapp.viewmodel.ToDoListViewModelFactory
 
@@ -15,7 +17,7 @@ class ToDoListActivity: AppCompatActivity() {
     private lateinit var binding: ActivityTodoListBinding
 
     private val viewModel: ToDoListViewModel by viewModels<ToDoListViewModel> {
-        ToDoListViewModelFactory()
+        ToDoListViewModelFactory(repository = ToDoRepository(getToDoApp().appDatabase))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,5 +64,7 @@ class ToDoListActivity: AppCompatActivity() {
 
     private fun getRecyclerViewAdapter() =
         binding.rvToDoList.adapter as ToDoListAdapter
+
+    private fun getToDoApp() = application as ToDoApp
 
 }

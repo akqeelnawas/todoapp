@@ -7,7 +7,7 @@ class RemoveToDoItemUseCase(
     private val repository: ToDoRepository,
 ) {
 
-     operator fun invoke(item: ToDoItem): Boolean {
+     suspend operator fun invoke(item: ToDoItem): Boolean {
         return repository.removeItem(item)
     }
 
