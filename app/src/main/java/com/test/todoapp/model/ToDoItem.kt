@@ -1,4 +1,4 @@
-package com.appetiserapps.testapplication.model
+package com.test.todoapp.model
 
 data class ToDoItem(
     val id: Int,

@@ -1,4 +1,4 @@
-package com.appetiserapps.testapplication.ui
+package com.test.todoapp.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.appetiserapps.testapplication.databinding.ActivityTodoListBinding
-import com.appetiserapps.testapplication.extension.showShortToast
-import com.appetiserapps.testapplication.viewmodel.ToDoListViewModel
-import com.appetiserapps.testapplication.viewmodel.ToDoListViewModelFactory
+import com.test.todoapp.extension.showShortToast
+import com.test.todoapp.viewmodel.ToDoListViewModel
+import com.test.todoapp.viewmodel.ToDoListViewModelFactory
 
 class ToDoListActivity: AppCompatActivity() {
 

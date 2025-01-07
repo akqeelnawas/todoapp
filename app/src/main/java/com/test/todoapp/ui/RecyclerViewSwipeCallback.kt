@@ -1,4 +1,4 @@
-package com.appetiserapps.testapplication.ui
+package com.test.todoapp.ui
 
 import android.content.Context
 import android.graphics.Canvas

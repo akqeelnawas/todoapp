@@ -1,6 +1,6 @@
-package com.appetiserapps.testapplication.repository
+package com.test.todoapp.repository
 
-import com.appetiserapps.testapplication.model.ToDoItem
+import com.test.todoapp.model.ToDoItem
 
 class ToDoRepository {
 

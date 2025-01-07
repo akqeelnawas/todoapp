@@ -1,11 +1,11 @@
-package com.appetiserapps.testapplication.ui
+package com.test.todoapp.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.appetiserapps.testapplication.databinding.RowTodoListBinding
-import com.appetiserapps.testapplication.model.ToDoItem
+import com.test.todoapp.model.ToDoItem
 
 class ToDoListAdapter(
     private val layoutInflater: LayoutInflater,

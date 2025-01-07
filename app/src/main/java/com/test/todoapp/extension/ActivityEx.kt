@@ -1,4 +1,4 @@
-package com.appetiserapps.testapplication.extension
+package com.test.todoapp.extension
 
 import android.app.Activity
 import android.widget.Toast

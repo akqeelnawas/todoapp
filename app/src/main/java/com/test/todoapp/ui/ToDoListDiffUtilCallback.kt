@@ -1,7 +1,7 @@
-package com.appetiserapps.testapplication.ui
+package com.test.todoapp.ui
 
 import androidx.recyclerview.widget.DiffUtil
-import com.appetiserapps.testapplication.model.ToDoItem
+import com.test.todoapp.model.ToDoItem
 
 class ToDoListDiffUtilCallback(
     private val oldList: List<ToDoItem>,

@@ -1,13 +1,13 @@
-package com.appetiserapps.testapplication.viewmodel
+package com.test.todoapp.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.appetiserapps.testapplication.model.ToDoItem
-import com.appetiserapps.testapplication.usecase.CreateToDoItemUseCase
-import com.appetiserapps.testapplication.usecase.FetchAllToDoItemsUseCase
-import com.appetiserapps.testapplication.usecase.RemoveToDoItemUseCase
+import com.test.todoapp.model.ToDoItem
+import com.test.todoapp.usecase.CreateToDoItemUseCase
+import com.test.todoapp.usecase.FetchAllToDoItemsUseCase
+import com.test.todoapp.usecase.RemoveToDoItemUseCase
 
 class ToDoListViewModel: ViewModel() {
 
